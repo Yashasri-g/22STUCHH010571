@@ -1,24 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { logFrontend } from './utils/logger';
 
 function App() {
+  const handleSuccessLog = () => {
+    logFrontend('info', 'component', 'User clicked on the success button.');
+  };
+
+  const handleErrorLog = () => {
+    logFrontend('error', 'component', 'Simulated frontend error occurred.');
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Frontend Logging Test</h1>
+      <button className="log-button success" onClick={handleSuccessLog}>
+        Log Info
+      </button>
+      <button className="log-button error" onClick={handleErrorLog}>
+        Log Error
+      </button>
     </div>
   );
 }
