@@ -1,20 +1,18 @@
-import React from "react";
-import "./App.css";
-import { logToBackend } from "./utils/logger";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './components/Home';
+import Analytics from './components/Analytics';
+import Redirect from './components/Redirect';
 
-const App: React.FC = () => {
-  const handleLogClick = () => {
-    logToBackend("INFO", {
-      message: "User clicked the log button",
-      additionalInfo: "Button click event in App component"
-    });
-  };
-
+const App = () => {
   return (
-    <div className="App">
-      <h1>Logging Middleware Demo</h1>
-      <button onClick={handleLogClick}>Send Log</button>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/analytics" element={<Analytics />} />
+        <Route path="/:shortId" element={<Redirect />} />
+      </Routes>
+    </Router>
   );
 };
 
