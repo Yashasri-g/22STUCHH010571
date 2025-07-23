@@ -24,7 +24,7 @@ import {
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Log } from '../logger';
-import { LogLevel } from '../logger/types';
+import { LogLevel, LogPackage } from '../logger/types';
 
 interface ClickDetail {
   timestamp: Date;
@@ -47,13 +47,12 @@ interface UrlEntry {
 const Analytics: React.FC = () => {
   const [analyticsData, setAnalyticsData] = useState<UrlEntry[]>([]);
 
-  const logMessage = async (level: LogLevel, message: string) => {
+  const logMessage = async (level: LogLevel, message: string, packageName: LogPackage = 'page') => {
     await Log({
-      timestamp: new Date().toISOString(),
+      stack: 'frontend',
       level,
-      message,
-      source: 'Analytics',
-      package: 'frontend_test_submission'
+      package: packageName,
+      message
     });
   };
 

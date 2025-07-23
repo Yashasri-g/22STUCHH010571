@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Container, Typography, CircularProgress, Alert, Box } from '@mui/material';
 import { Log } from '../logger';
-import { LogLevel } from '../logger/types';
+import { LogLevel, LogPackage } from '../logger/types';
 
 export type RedirectEntry = {
   from: string;
@@ -31,13 +31,12 @@ const Redirect: React.FC<{ from?: string; to?: string }> = ({ from, to }) => {
   const { shortCode } = useParams<{ shortCode: string }>();
   const navigate = useNavigate();
 
-  const logMessage = async (level: LogLevel, message: string) => {
+  const logMessage = async (level: LogLevel, message: string, packageName: LogPackage = 'component') => {
     await Log({
-      timestamp: new Date().toISOString(),
+      stack: 'frontend',
       level,
-      message,
-      source: 'Redirect',
-      package: 'frontend_test_submission'
+      package: packageName,
+      message
     });
   };
 
