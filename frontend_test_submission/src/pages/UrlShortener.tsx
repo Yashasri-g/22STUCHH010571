@@ -14,7 +14,7 @@ import {
   Divider
 } from '@mui/material';
 import { Log } from '../logger';
-import { LogLevel } from '../logger/types';
+import { LogLevel, LogPackage } from '../logger/types';
 
 interface UrlEntry {
   id: string;
@@ -50,13 +50,12 @@ const UrlShortener: React.FC<UrlShortenerProps> = ({ setRedirects }) => {
   const [results, setResults] = useState<UrlEntry[]>([]);
   const [errors, setErrors] = useState<string[]>([]);
 
-  const logMessage = async (level: LogLevel, message: string) => {
+  const logMessage = async (level: LogLevel, message: string, packageName: LogPackage = 'page') => {
     await Log({
-      timestamp: new Date().toISOString(),
+      stack: 'frontend',
       level,
-      message,
-      source: 'UrlShortener',
-      package: 'frontend_test_submission'
+      package: packageName,
+      message
     });
   };
 
