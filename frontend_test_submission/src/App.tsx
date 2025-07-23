@@ -1,27 +1,21 @@
-import React from 'react';
-import './App.css';
-import { logFrontend } from './utils/logger';
+import React from "react";
+import "./App.css";
+import { logToBackend } from "./utils/logger";
 
-function App() {
-  const handleSuccessLog = () => {
-    logFrontend('info', 'component', 'User clicked on the success button.');
-  };
-
-  const handleErrorLog = () => {
-    logFrontend('error', 'component', 'Simulated frontend error occurred.');
+const App: React.FC = () => {
+  const handleLogClick = () => {
+    logToBackend("INFO", {
+      message: "User clicked the log button",
+      additionalInfo: "Button click event in App component"
+    });
   };
 
   return (
     <div className="App">
-      <h1>Frontend Logging Test</h1>
-      <button className="log-button success" onClick={handleSuccessLog}>
-        Log Info
-      </button>
-      <button className="log-button error" onClick={handleErrorLog}>
-        Log Error
-      </button>
+      <h1>Logging Middleware Demo</h1>
+      <button onClick={handleLogClick}>Send Log</button>
     </div>
   );
-}
+};
 
 export default App;

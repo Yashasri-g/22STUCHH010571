@@ -1,27 +1,20 @@
+/* src/App.css */
 .App {
   text-align: center;
-  margin-top: 4rem;
-  font-family: sans-serif;
+  padding: 2rem;
+  font-family: Arial, sans-serif;
 }
 
-.log-button {
+button {
   padding: 10px 20px;
-  margin: 0 10px;
   font-size: 16px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
+  background-color: #0077cc;
   color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-.log-button.success {
-  background-color: #28a745;
-}
-
-.log-button.error {
-  background-color: #dc3545;
-}
-
-.log-button:hover {
-  opacity: 0.8;
+button:hover {
+  background-color: #005fa3;
 }
